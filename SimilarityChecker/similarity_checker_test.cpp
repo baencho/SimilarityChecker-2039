@@ -7,8 +7,8 @@ TEST(TS, TC1) {
 	string str2 = "ABC";
 	int actual = checker.getLengthPoint(str1, str2);
 	EXPECT_EQ(60, actual);
-
 }
+
 int main()
 {
 	::testing::InitGoogleMock();

@@ -1,11 +1,19 @@
 #include <string>
 #include <iostream>
+#include <stdexcept>
 
 using std::string;
 
 class SimilarityChecker {
 public:
+	void checkEmptyString(const string& str1, const string& str2) {
+		if (str1.length() == 0 || str2.length() == 0) {
+			throw std::invalid_argument("Should not put empty strings as input");
+		}
+	}
+
 	int getLengthPoint(const string& str1, const string& str2) {
+		checkEmptyString(str1, str2);
 		if (str1.length() == str2.length()) return MAX_LENGTH_POINT;
 		return getPartialPoint(str1, str2);
 	}

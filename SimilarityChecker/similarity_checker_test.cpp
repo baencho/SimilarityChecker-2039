@@ -22,6 +22,27 @@ TEST_F(TCFixture, TC3) {
 	checkLengthPoint("NLKISGDLIE", "ABCDE", 30);
 }
 
+TEST_F(TCFixture, EmptyString1) {
+	try {
+		checker.checkEmptyString("", "ABC");
+		FAIL();
+	}
+	catch (std::exception& e) {
+		// PASS
+	}
+}
+
+TEST_F(TCFixture, EmptyString2) {
+	const int INVALID_POINT = 0;
+	try {
+		checkLengthPoint("", "ABC", INVALID_POINT);
+		FAIL();
+	}
+	catch (std::exception& e) {
+		// PASS
+	}
+}
+
 int main()
 {
 	::testing::InitGoogleMock();

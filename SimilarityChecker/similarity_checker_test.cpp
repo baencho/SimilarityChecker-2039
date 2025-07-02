@@ -1,20 +1,25 @@
 #include "gmock/gmock.h"
 #include "similarity_checker.cpp"
 
-TEST(TS, TC1) {
+class TCFixture : public testing::Test {
+public:
 	SimilarityChecker checker;
-	string str1 = "ABC";
-	string str2 = "ABC";
-	int actual = checker.getLengthPoint(str1, str2);
-	EXPECT_EQ(60, actual);
+	void checkLengthPoint(const string& str1, const string& str2, int expected) {
+		int actual = checker.getLengthPoint(str1, str2);
+		EXPECT_EQ(expected, actual);
+	}
+};
+
+TEST_F(TCFixture, TC1) {
+	checkLengthPoint("ABC", "ABC", 60);
 }
 
-TEST(TS, TC2) {
-	SimilarityChecker checker;
-	string str1 = "ABC";
-	string str2 = "ABCDE";
-	int actual = checker.getLengthPoint(str1, str2);
-	EXPECT_EQ(36, actual);
+TEST_F(TCFixture, TC2) {
+	checkLengthPoint("ABC", "ABCDE", 36);
+}
+
+TEST_F(TCFixture, TC3) {
+	checkLengthPoint("NLKISGDLIE", "ABCDE", 30);
 }
 
 int main()

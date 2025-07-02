@@ -5,26 +5,34 @@ using std::string;
 
 class SimilarityChecker {
 public:
-	int getLengthPoint(string str1, string str2) {
+	int getLengthPoint(const string& str1, const string& str2) {
 		if (str1.length() == str2.length()) return MAX_LENGTH_POINT;
-
-		int diff = 0;
-		int longerLength = 0;
-		if (str1.length() > str2.length()) {
-			diff = str1.length() - str2.length();
-			longerLength = str1.length();
-		}
-		else {
-			diff = str2.length() - str1.length();
-			longerLength = str2.length();
-		}
-		double percentage = (double)(diff) / (double)(longerLength);
-
-		double partialPoint = (1.0 - percentage) * 60.0;
-
-		return (int)partialPoint;
+		return getPartialPoint(str1, str2);
 	}
 
 private:
 	const int MAX_LENGTH_POINT = 60;
+
+	int getPartialPoint(const string& str1, const string& str2) {
+		int diff = getStringLengthDiff(str1, str2);
+		int longerLength = getLongerStringLength(str1, str2);
+
+		double percentage = static_cast<double>(diff) / static_cast<double>(longerLength);
+		double partialPoint = (1.0 - percentage) * 60.0;
+
+		return static_cast<int>(partialPoint);
+	}
+	int getLongerStringLength(const string& str1, const string& str2) {
+		if (str1.length() > str2.length()) {
+			return str1.length();
+		}
+		return str2.length();
+	}
+
+	int getStringLengthDiff(const string& str1, const string& str2) {
+		if (str1.length() > str2.length()) {
+			return str1.length() - str2.length();
+		}
+		return str2.length() - str1.length();
+	}
 };

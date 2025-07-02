@@ -23,7 +23,7 @@ private:
 	const int MAX_LENGTH_POINT = 60;
 	const int MIN_LENGTH_POINT = 0;
 
-	double checkDoubleLength(const string& str1, const string& str2) {
+	bool checkDoubleLength(const string& str1, const string& str2) {
 		if (str1.length() > str2.length() * 2) return true;
 		if (str2.length() > str1.length() * 2) return true;
 		return false;

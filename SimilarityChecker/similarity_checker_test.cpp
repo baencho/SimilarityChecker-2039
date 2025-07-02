@@ -22,6 +22,10 @@ TEST_F(LengthCheckerFixture, TC3) {
 	checkLengthPoint("NLKISGDLIE", "ABCDE", 30);
 }
 
+TEST_F(LengthCheckerFixture, TC4) {
+	checkLengthPoint("AAAAAAAAAA", "AB", 0);
+}
+
 TEST_F(LengthCheckerFixture, EmptyString1) {
 	try {
 		checker.checkEmptyString("", "ABC");
